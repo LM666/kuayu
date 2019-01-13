@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    我是index.html
+    <script>
+        let xml = new XMLHttpRequest();
+        xml.open('post','http://localhost:3000/data',true)
+        //设置请求头
+        xml.setRequestHeader('name','a')
+        document.cookie='age=3'
+        //发送请求时携带cookie
+        xml.withCredentials=true;
+        xml.onreadystatechange=function(){
+            if(xml.readyState==4){
+                if(xml.status>=200 && xml.status<300 && xml.status==304){
+                   console.log(xml.response)
+                   console.log(xml.getResponseHeader('name'))
+                }
+            }
+        }
+        xml.send()
+
+    </script>
+</body>
+</html>
